@@ -1,0 +1,19 @@
+.member-panel { width: min(1120px, calc(100% - 2rem)); margin: 2rem auto 4rem; padding: 2rem; background: #fff; border: 1px solid var(--border); border-radius: 18px; box-shadow: var(--shadow-sm); }
+.member-panel > h2 { margin-bottom: .2rem; font-size: clamp(1.6rem, 4vw, 2.15rem); }
+.member-panel > h2 + p { color: var(--text-muted); }
+.message { margin: 1rem 0; padding: 1rem; color: #166534; background: #ecfdf5; border-radius: 10px; }
+.message.error { color: #991b1b; background: #fef2f2; }
+.result-summary { display: grid; grid-template-columns: repeat(5, 1fr); gap: .75rem; margin: 1.4rem 0; }
+.result-summary p { margin: 0; padding: 1rem; color: var(--text-muted); background: #f8fafc; border: 1px solid var(--border); border-radius: 12px; }
+.result-summary strong { display: block; color: var(--navy-900); font-size: 1.15rem; }
+.item-section { margin-top: 1.3rem; padding: 1.35rem; border: 1px solid #dbe3ee; border-radius: 14px; }
+.item-section h3 { padding-bottom: .65rem; border-bottom: 1px solid var(--border); }
+.item-form { display: flex; flex-wrap: wrap; align-items: center; gap: .65rem; margin: .75rem 0; padding: .75rem; background: #f8fafc; border-radius: 10px; }
+.item-form input, .item-form select { min-width: 150px; min-height: 42px; flex: 1; padding: .55rem .7rem; font: inherit; background: #fff; border: 1px solid #cbd5e1; border-radius: 8px; }
+.item-form button { min-height: 42px; padding: .55rem .9rem; color: #fff; background: var(--navy-700); border: 0; border-radius: 8px; font: inherit; font-weight: 600; cursor: pointer; }
+.item-form button:hover { background: var(--navy-900); }
+.delete-form { margin: .4rem 0; }
+.delete-form button { padding: .5rem .8rem; color: #991b1b; background: #fee2e2; border: 0; border-radius: 8px; font: inherit; cursor: pointer; }
+.sub-items { margin: .7rem 0 1rem 1rem; padding: .8rem 1rem; background: #f8fbff; border-left: 3px solid #93c5fd; }
+@media (max-width: 900px) { .result-summary { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .member-panel { width: min(100% - 1rem, 1120px); padding: 1rem; } .result-summary { grid-template-columns: 1fr; } .item-form { align-items: stretch; } .item-form input, .item-form select, .item-form button { width: 100%; } }

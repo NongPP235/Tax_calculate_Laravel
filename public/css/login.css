@@ -1,0 +1,127 @@
+/* LOGIN.CSS - ใช้เฉพาะหน้าเข้าสู่ระบบ */
+.auth-page {
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1.25rem;
+    background: radial-gradient(circle at 85% 15%, rgba(232,176,48,.2), transparent 40%), radial-gradient(circle at 10% 90%, rgba(22,160,104,.25), transparent 45%), linear-gradient(135deg, var(--navy-900), var(--navy-700));
+    background-attachment: fixed;
+}
+.auth-page > h1 { margin: 0 0 1.5rem; color: #fff; font-size: clamp(1.6rem, 4vw, 2.2rem); text-align: center; }
+.auth-page main { width: 100%; max-width: 440px; flex: 0 0 auto; }
+.auth-page main > form { padding: 2.25rem 2rem; background: #fff; border-top: 5px solid var(--gold-500); border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,.3); }
+.auth-page main > form > section { margin-bottom: 1.15rem; }
+.auth-page label { display: block; margin-bottom: .4rem; color: var(--text); font-size: .95rem; font-weight: 500; }
+.auth-page input[type="email"], .auth-page input[type="password"] { width: 100%; min-height: 50px; padding: .75rem 1rem; color: var(--text); background: #fff; border: 1.5px solid var(--border); border-radius: var(--radius-sm); font: inherit; }
+.auth-page input:focus { outline: none; border-color: var(--navy-700); box-shadow: 0 0 0 4px rgba(22,59,120,.15); }
+.auth-page input.is-invalid { border-color: var(--danger); background: #fef2f2; }
+.auth-page main > form > button { display: flex; width: 100%; min-height: 52px; align-items: center; justify-content: center; margin-top: 1.5rem; padding: .9rem 1.5rem; color: #fff; background: var(--green-600); border: 0; border-radius: 999px; font: inherit; font-weight: 600; cursor: pointer; }
+.auth-page main > form > button:hover { background: var(--green-700); }
+.auth-page .auth-link { margin: 1.5rem 0 0; color: var(--text-muted); font-size: .92rem; text-align: center; }
+.auth-page .auth-link a { color: var(--navy-700); font-weight: 600; text-decoration: underline; }
+
+/* ---------- ข้อความใต้หัวข้อ ---------- */
+.auth-page .auth-subtitle {
+    margin: -.75rem 0 1.5rem;
+    font-size: 1rem;
+    text-align: center;
+    color: rgba(255, 255, 255, .8);
+}
+
+/* ---------- กล่องแจ้งเตือนบนฟอร์ม ---------- */
+.auth-page .auth-alert,
+.auth-page .auth-status {
+    margin-bottom: 1.25rem;
+    padding: .85rem 1rem;
+    font-size: .92rem;
+    line-height: 1.6;
+    border-radius: var(--radius-sm);
+}
+
+/* error: อีเมลหรือรหัสผ่านไม่ถูกต้อง */
+.auth-page .auth-alert {
+    color: #991b1b;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    border-left: 4px solid var(--danger);
+}
+.auth-page .auth-alert ul {
+    margin: 0;
+    padding-left: 1.1rem;
+}
+
+/* success: เช่น "เปลี่ยนรหัสผ่านสำเร็จ" */
+.auth-page .auth-status {
+    color: #166534;
+    background: #f0fdf4;
+    border: 1px solid #bbf7d0;
+    border-left: 4px solid var(--green-600);
+}
+
+/* ---------- แถว "จดจำฉัน" + "ลืมรหัสผ่าน" ---------- */
+.auth-page .form-options {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: .75rem 1rem;
+    margin-top: .25rem;
+}
+
+/* override label ของ register.css ที่เป็น display:block */
+.auth-page .remember-me {
+    display: inline-flex;
+    align-items: center;
+    gap: .55rem;
+    margin: 0;
+    font-size: .92rem;
+    font-weight: 400;
+    cursor: pointer;
+    user-select: none;
+}
+.auth-page .remember-me input[type="checkbox"] {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    cursor: pointer;
+    accent-color: var(--green-600);
+}
+
+.auth-page .forgot-link {
+    font-size: .92rem;
+    font-weight: 500;
+    color: var(--navy-700);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: color var(--transition);
+}
+.auth-page .forgot-link:hover {
+    color: var(--green-700);
+}
+
+/* ---------- ลิงก์กลับหน้าหลัก (อยู่นอกการ์ด) ---------- */
+.auth-page .back-home {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    margin-top: 1.5rem;
+    padding: .5rem 1rem;
+    font-size: .92rem;
+    color: rgba(255, 255, 255, .85);
+    border-radius: 999px;
+    transition: background var(--transition), color var(--transition);
+}
+.auth-page .back-home:hover {
+    color: var(--white);
+    background: rgba(255, 255, 255, .12);
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 480px) {
+    .auth-page { padding: 1.5rem .85rem; }
+    .auth-page main > form { padding: 1.75rem 1.25rem; }
+    .auth-page .form-options {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

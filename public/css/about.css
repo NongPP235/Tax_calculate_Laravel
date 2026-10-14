@@ -1,0 +1,125 @@
+/* ==========================================================
+   ABOUT.CSS – หน้าเกี่ยวกับ
+   ต้องโหลด base.css ก่อนเสมอ
+   ต้องแก้ HTML: ห่อเนื้อหาด้วย <main class="about-container">
+   และห่อแต่ละหัวข้อด้วย <section> (ดูตัวอย่างท้ายคำตอบ)
+   ========================================================== */
+
+.about-container {
+    width: 100%;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2.5rem 1.25rem 4rem;
+}
+
+/* ---------- เส้นคั่น: ซ่อน เพราะใช้การ์ดแทน ---------- */
+.about-container > hr {
+    display: none;
+}
+
+/* ---------- การ์ดแต่ละหัวข้อ ---------- */
+.about-container > section {
+    position: relative;
+    margin-bottom: 1.75rem;
+    padding: 2.25rem 2.5rem;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow var(--transition), transform var(--transition);
+}
+.about-container > section:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+/* ---------- หัวข้อ ---------- */
+.about-container h2 {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: .75rem;
+    font-size: clamp(1.25rem, 2.5vw, 1.55rem);
+    border-bottom: 2px solid var(--navy-100);
+}
+.about-container h2::before {
+    content: '';
+    flex-shrink: 0;
+    width: 6px;
+    height: 1.3em;
+    background: var(--gold-500);
+    border-radius: 4px;
+}
+
+.about-container p {
+    color: var(--text);
+    text-align: justify;
+    text-justify: inter-word;
+}
+.about-container section > p:last-child { margin-bottom: 0; }
+
+/* ---------- รายการขั้นตอน (ol) แบบมีตัวเลขวงกลม ---------- */
+.about-container ol {
+    margin: 1.25rem 0 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: step;
+}
+.about-container ol li {
+    position: relative;
+    margin-bottom: .75rem;
+    padding: .85rem 1rem .85rem 3.5rem;
+    background: var(--bg);
+    border-radius: var(--radius-sm);
+    counter-increment: step;
+}
+.about-container ol li::before {
+    content: counter(step);
+    position: absolute;
+    left: .85rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    font-size: .9rem;
+    font-weight: 700;
+    color: var(--white);
+    background: var(--navy-700);
+    border-radius: 50%;
+}
+/* ขั้นตอนสุดท้าย (แสดงผลลัพธ์) เน้นสีเขียว */
+.about-container ol li:last-child::before {
+    background: var(--green-600);
+}
+
+/* ---------- ผู้จัดทำ ---------- */
+.about-team p {
+    display: flex;
+    align-items: center;
+    gap: .85rem;
+    margin-bottom: .75rem;
+    padding: .9rem 1.1rem;
+    text-align: left;
+    background: var(--bg);
+    border-left: 4px solid var(--gold-500);
+    border-radius: var(--radius-sm);
+}
+.about-team p::before {
+    content: '👤';
+    font-size: 1.3rem;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 640px) {
+    .about-container { padding: 1.25rem .85rem 3rem; }
+    .about-container > section { padding: 1.5rem 1.15rem; }
+    .about-container p { text-align: left; }
+    .about-container ol li {
+        padding: .75rem .85rem .75rem 3.25rem;
+        font-size: .95rem;
+    }
+}

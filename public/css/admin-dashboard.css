@@ -1,0 +1,22 @@
+.message { margin-bottom: 1rem; padding: 1rem; color: #166534; background: #ecfdf5; border-radius: 10px; }
+.message.error { color: #991b1b; background: #fef2f2; }
+header nav form { display: inline; }
+.dashboard-page { width: min(1100px, calc(100% - 2.5rem)); margin: 2.5rem auto 4rem; }
+.dashboard-hero { display: flex; align-items: center; justify-content: space-between; gap: 2rem; padding: 2.25rem 2.5rem; color: #fff; background: linear-gradient(135deg, #16213e, #0f4c5c); border-radius: 20px; box-shadow: var(--shadow-md); }
+.dashboard-hero h2 { margin: .25rem 0 .5rem; color: #fff; font-size: clamp(1.8rem, 4vw, 2.6rem); }
+.dashboard-hero p:not(.eyebrow) { margin: 0; color: rgba(255,255,255,.85); }
+.eyebrow { margin: 0; color: var(--gold-500); font-size: .8rem; font-weight: 700; letter-spacing: .13em; }
+.profile-badge { display: grid; width: 82px; height: 82px; flex: 0 0 auto; place-items: center; color: var(--navy-900); background: var(--gold-500); border: 3px solid rgba(255,255,255,.45); border-radius: 50%; font-size: 2rem; }
+.dashboard-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.5rem; }
+.dashboard-stats div { padding: 1.3rem; background: #fff; border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-sm); }
+.dashboard-stats span { display: block; color: var(--text-muted); font-size: .88rem; }
+.dashboard-stats strong { margin-right: .35rem; color: var(--navy-900); font-size: 2.15rem; }
+.dashboard-stats small { color: var(--text-muted); }
+.admin-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin-top: 1.5rem; }
+.dashboard-action { display: flex; align-items: center; gap: 1rem; min-height: 132px; padding: 1.3rem; background: #fff; border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-sm); transition: .2s ease; }
+.dashboard-action:hover { transform: translateY(-4px); border-color: #a9bddc; box-shadow: var(--shadow-md); }
+.dashboard-action > span { display: grid; width: 48px; height: 48px; flex: 0 0 auto; place-items: center; background: #fff5d8; border-radius: 12px; font-size: 1.5rem; }
+.dashboard-action h3 { margin: 0 0 .25rem; font-size: 1.05rem; }
+.dashboard-action p { margin: 0; color: var(--text-muted); font-size: .9rem; }
+@media (max-width: 780px) { .dashboard-page { width: min(100% - 1.5rem, 1100px); margin-top: 1.25rem; } .dashboard-hero { padding: 1.7rem; } .dashboard-stats, .admin-grid { grid-template-columns: 1fr; } }
+@media (max-width: 480px) { .dashboard-hero { padding: 1.35rem; } .profile-badge { width: 58px; height: 58px; } }

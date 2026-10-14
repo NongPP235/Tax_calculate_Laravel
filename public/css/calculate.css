@@ -1,0 +1,398 @@
+/* ==========================================================
+   CALCULATOR.CSS – หน้าคำนวณภาษี
+   ต้องโหลด base.css ก่อนเสมอ
+   ========================================================== */
+
+main {
+    width: 100%;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2.5rem 1.25rem 4rem;
+}
+
+/* ---------- ฟอร์มหลัก (การ์ดใหญ่) ---------- */
+main > form {
+    padding: 2.5rem;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    box-shadow: var(--shadow-md);
+}
+
+/* ---------- หัวข้อแต่ละส่วน ---------- */
+main > form h3 {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    margin: 0 0 1.5rem;
+    padding-bottom: .75rem;
+    font-size: 1.3rem;
+    color: var(--navy-900);
+    border-bottom: 2px solid var(--navy-100);
+}
+main > form h3::before {
+    content: '';
+    flex-shrink: 0;
+    width: 6px;
+    height: 1.4em;
+    background: var(--gold-500);
+    border-radius: 4px;
+}
+
+main > form h4 {
+    margin: 2rem 0 1rem;
+    padding: .55rem 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--navy-700);
+    background: var(--navy-100);
+    border-radius: var(--radius-sm);
+}
+
+main > form hr {
+    margin: 2.25rem 0;
+    border: 0;
+    border-top: 1px dashed var(--border);
+}
+
+/* ---------- Label ---------- */
+main > form label {
+    display: block;
+    margin-bottom: .4rem;
+    font-size: .95rem;
+    font-weight: 500;
+    color: var(--text);
+    line-height: 1.5;
+}
+
+/* ---------- ช่องกรอก / select ---------- */
+main > form input[type="number"],
+main > form input[type="text"],
+main > form select {
+    width: 100%;
+    min-height: 48px;
+    padding: .7rem 1rem;
+    font-family: inherit;
+    font-size: 1rem;
+    color: var(--text);
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    transition: border-color var(--transition), box-shadow var(--transition), background var(--transition);
+}
+
+main > form input[type="number"] {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+main > form select {
+    appearance: none;
+    padding-right: 2.5rem;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+}
+
+main > form input:hover,
+main > form select:hover {
+    border-color: #b8c4d9;
+}
+
+main > form input:focus,
+main > form select:focus {
+    outline: none;
+    border-color: var(--navy-700);
+    box-shadow: 0 0 0 4px rgba(22, 59, 120, .15);
+}
+
+/* สถานะ error (เมื่อผู้ใช้กรอกแล้วค่าไม่ถูกต้อง) */
+main > form input:user-invalid,
+main > form select:user-invalid {
+    border-color: var(--danger);
+    background: #fef2f2;
+}
+main > form input:user-invalid:focus {
+    box-shadow: 0 0 0 4px rgba(220, 38, 38, .15);
+}
+
+/* ---------- ข้อมูลส่วนตัว: จัดเป็น grid ---------- */
+.personal-status {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: .35rem 1.5rem;
+}
+/* label + input คู่แรก (สถานะภาพสมรส) กินเต็มแถว */
+.personal-status label[for="married-status"],
+.personal-status #married-status {
+    grid-column: 1 / -1;
+}
+.personal-status #married-status { margin-bottom: 1rem; }
+
+/* ---------- Checkbox ผู้พิการ ---------- */
+.personal-status label[for="is_disable"] {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    margin-top: 1rem;
+    padding: .85rem 1rem;
+    cursor: pointer;
+    background: var(--bg);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    transition: border-color var(--transition), background var(--transition);
+}
+.personal-status label[for="is_disable"]:hover {
+    border-color: var(--green-600);
+    background: #f0faf5;
+}
+.personal-status input[type="checkbox"] {
+    flex-shrink: 0;
+    width: 22px;
+    height: 22px;
+    margin: 0;
+    cursor: pointer;
+    accent-color: var(--green-600);
+}
+
+/* ---------- กลุ่มช่องกรอกรายได้ / ลดหย่อน ---------- */
+.income > div[class^="income_g"],
+.deductions > div[class^="deduct_g"] {
+    margin-bottom: 1.25rem;
+    padding: 1rem 1.15rem;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--navy-700);
+    border-radius: var(--radius-sm);
+    transition: box-shadow var(--transition), border-left-color var(--transition);
+}
+.income > div[class^="income_g"]:focus-within,
+.deductions > div[class^="deduct_g"]:focus-within {
+    border-left-color: var(--green-600);
+    box-shadow: var(--shadow-sm);
+}
+
+/* กลุ่มลดหย่อนใช้สีต่างจากรายได้ ให้แยกกันชัด */
+.deductions > div[class^="deduct_g"] { border-left-color: var(--gold-500); }
+
+/* ม.40(6) มี select + input ในกล่องเดียว */
+.income_g6 select { margin-bottom: 1rem; }
+
+/* ---------- ปุ่มส่งฟอร์ม ---------- */
+main > form > button[type="submit"] {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 52px;
+    margin-top: 2rem;
+    margin-right: .75rem;
+    padding: .9rem 2.25rem;
+    font-family: inherit;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--white);
+    background: var(--navy-800);
+    border: 0;
+    border-radius: 999px;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(15, 45, 94, .3);
+    transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+}
+main > form > button[type="submit"]:hover {
+    background: var(--navy-700);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(15, 45, 94, .4);
+}
+main > form > button[type="submit"]:active { transform: translateY(0); }
+
+/* ปุ่มบันทึก (มี inline style background:green อยู่ใน HTML จึงต้องใช้ !important) */
+main > form > button[style*="green"] {
+    background-color: var(--green-600) !important;
+    box-shadow: 0 6px 18px rgba(22, 160, 104, .35);
+}
+main > form > button[style*="green"]:hover {
+    background-color: var(--green-700) !important;
+}
+
+/* ข้อความชวนสมัครสมาชิก (Guest) */
+.guest-alert {
+    margin-top: 1.25rem !important;
+    padding: .9rem 1.1rem;
+    font-size: .92rem !important;
+    color: var(--text-muted) !important;
+    background: #fffbeb;
+    border: 1px solid #fde68a;
+    border-radius: var(--radius-sm);
+}
+.guest-alert a {
+    font-weight: 600;
+    color: var(--navy-700);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+.guest-alert a:hover { color: var(--green-700); }
+
+/* ---------- กล่องผลลัพธ์ ---------- */
+.net-income {
+    margin-top: 2rem;
+    padding: 2rem 2.5rem;
+    text-align: center;
+    color: var(--white);
+    background:
+        radial-gradient(circle at 90% 10%, rgba(232, 176, 48, .22), transparent 45%),
+        linear-gradient(135deg, var(--navy-900), var(--navy-700));
+    border-radius: 20px;
+    box-shadow: var(--shadow-md);
+}
+.net-income h3 {
+    margin-bottom: 1.25rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, .8);
+}
+.net-income > p {
+    margin: 0;
+    color: rgba(255, 255, 255, .8);
+}
+
+.result-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    text-align: center;
+}
+.result-card {
+    display: flex;
+    min-height: 176px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 1.25rem 1rem;
+    color: rgba(255, 255, 255, .8);
+    background: rgba(255, 255, 255, .08);
+    border: 1px solid rgba(255, 255, 255, .15);
+    border-radius: var(--radius);
+    transition: transform var(--transition), background var(--transition), border-color var(--transition);
+}
+.result-card:hover { transform: translateY(-2px); background: rgba(255,255,255,.11); border-color: rgba(255,255,255,.25); }
+.result-label { max-width: 280px; font-size: .95rem; font-weight: 500; line-height: 1.5; }
+.result-card small { color: rgba(255,255,255,.78); font-size: .9rem; }
+
+/* ตัวเลขสำคัญ ให้ขึ้นบรรทัดใหม่และเป็นตัวใหญ่ */
+.result-box .amount,
+.result-box .taxpay,
+.result-box .paid-amount {
+    display: block;
+    margin: .35rem 0;
+    font-size: clamp(1.6rem, 4vw, 2.25rem);
+    font-weight: 700;
+    line-height: 1.2;
+    font-variant-numeric: tabular-nums;
+}
+.result-box .amount { color: #6ee7b7; }
+.result-box .taxpay { color: var(--gold-500); }
+.result-box .paid-amount { color: var(--gold-500); }
+.refund-card { border-color: rgba(110, 231, 183, .3); }
+.payment-card { border-color: rgba(232, 176, 48, .3); }
+
+/* ---------- รายละเอียดผลคำนวณ ---------- */
+.calculation-details {
+    margin-top: 1.25rem;
+    padding: .85rem 1rem;
+    text-align: left;
+    background: rgba(0, 0, 0, .12);
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 12px;
+}
+.calculation-details summary { text-align: center; color: #fff; font-weight: 600; cursor: pointer; }
+.calculation-detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; margin-top: 1rem; }
+.calculation-detail-grid p { display: flex; justify-content: space-between; gap: 1rem; margin: 0; padding: .7rem .8rem; color: rgba(255,255,255,.72); background: rgba(255,255,255,.06); border-radius: 8px; font-size: .85rem; }
+.calculation-detail-grid strong { color: #fff; text-align: right; }
+.minimum-tax-note { margin: .8rem 0 0; color: rgba(255,255,255,.65); font-size: .78rem; text-align: center; }
+
+/* ---------- บันทึกเป็นประวัติ ---------- */
+.save-history-card {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+    margin-top: 1.25rem;
+    padding: 1.2rem;
+    text-align: left;
+    color: var(--text);
+    background: #fff;
+    border: 1px solid rgba(255,255,255,.35);
+    border-radius: 14px;
+    box-shadow: 0 12px 28px rgba(0,0,0,.16);
+}
+.save-history-icon { display: grid; width: 42px; height: 42px; place-items: center; color: #fff; background: var(--green-600); border-radius: 12px; font-size: 1.15rem; font-weight: 700; }
+.save-history-content h4 { margin: 0 0 .15rem; color: var(--navy-900); font-size: 1.05rem; }
+.save-history-content > p { margin: 0 0 .8rem; color: var(--text-muted); font-size: .86rem; }
+.save-history-content > small { display: block; margin-top: .45rem; color: var(--text-muted); font-size: .75rem; }
+.history-save-form { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: .65rem; }
+.history-save-form input { width: 100%; min-height: 44px; padding: .65rem .85rem; color: var(--text); background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 9px; font: inherit; }
+.history-save-form input:focus { outline: none; background: #fff; border-color: var(--navy-700); box-shadow: 0 0 0 3px rgba(22,59,120,.12); }
+.save-history-button {
+    display: inline-flex;
+    min-height: 46px;
+    align-items: center;
+    justify-content: center;
+    gap: .55rem;
+    padding: .65rem 1.15rem;
+    color: var(--navy-900);
+    background: linear-gradient(135deg, #f8c54e, var(--gold-500));
+    border: 0;
+    border-radius: 10px;
+    box-shadow: 0 6px 15px rgba(232, 176, 48, .32);
+    font: inherit;
+    font-weight: 700;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+}
+.save-history-button:hover { transform: translateY(-2px); background: linear-gradient(135deg, #ffd46c, #e0a21c); box-shadow: 0 9px 20px rgba(232, 176, 48, .42); }
+.save-history-button:active { transform: translateY(0); }
+.save-button-icon { display: grid; width: 24px; height: 24px; place-items: center; color: #fff; background: var(--navy-900); border-radius: 50%; font-size: .8rem; }
+.login-to-save { display: inline-flex; min-height: 44px; align-items: center; justify-content: center; padding: .65rem 1rem; color: #fff; background: var(--green-600); border-radius: 9px; font-weight: 600; }
+.login-to-save:hover { background: var(--green-700); }
+.guest-save-card { align-items: center; }
+.guest-save-card .save-history-icon { background: var(--navy-700); }
+.login-to-save { width: fit-content; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+/* ---------- Responsive ---------- */
+[hidden] { display: none !important; }
+
+main > form fieldset {
+    margin: 1.5rem 0;
+    padding: 1rem 1.15rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+}
+main > form legend { font-weight: 600; padding: 0 .5rem; }
+main > form input, main > form select { margin-bottom: .75rem; }
+.field-help { color: var(--text-muted); font-size: .9rem; line-height: 1.65; margin: .5rem 0 1rem; }
+main > form .check-label { display: flex; align-items: flex-start; gap: .65rem; margin-top: .75rem; }
+.check-label input[type="checkbox"] { flex-shrink: 0; margin-top: .25rem; }
+.validation-errors { margin-bottom: 1.5rem; padding: 1rem; background: #fef2f2; border: 1px solid #dc2626; border-radius: var(--radius-sm); color: #991b1b; }
+.validation-errors ul { padding-left: 1.25rem; }
+.validation-errors a { color: inherit; text-decoration: underline; }
+@media (max-width: 640px) {
+    main { padding: 1.25rem .85rem 3rem; }
+    main > form { padding: 1.5rem 1.15rem; border-radius: var(--radius); }
+    .personal-status { grid-template-columns: 1fr; }
+    .result-box { grid-template-columns: 1fr; }
+    .result-card { min-height: 145px; }
+    .net-income { padding: 1.5rem 1.15rem; border-radius: var(--radius); }
+    .calculation-detail-grid { grid-template-columns: 1fr; }
+    .save-history-card { grid-template-columns: 1fr; }
+    .history-save-form { grid-template-columns: 1fr; }
+    .history-save-form button, .login-to-save { width: 100%; }
+    main > form > button[type="submit"] {
+        width: 100%;
+        margin-right: 0;
+    }
+    main > form > button[style*="green"] { margin-top: .75rem; }
+}

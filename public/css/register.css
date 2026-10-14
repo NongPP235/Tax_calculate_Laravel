@@ -1,0 +1,182 @@
+/* ==========================================================
+   REGISTER.CSS – ใช้เฉพาะหน้าสมัครสมาชิก
+   ต้องโหลด base.css ก่อนเสมอ
+   ต้องเพิ่ม class="auth-page" ที่ <body>
+   ========================================================== */
+
+.auth-page {
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 1.25rem;
+    background:
+        radial-gradient(circle at 85% 15%, rgba(232, 176, 48, .2), transparent 40%),
+        radial-gradient(circle at 10% 90%, rgba(22, 160, 104, .25), transparent 45%),
+        linear-gradient(135deg, var(--navy-900) 0%, var(--navy-700) 100%);
+    background-attachment: fixed;
+}
+
+/* ---------- หัวข้อหน้า ---------- */
+.auth-page > h1 {
+    margin: 0 0 1.5rem;
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    font-weight: 700;
+    text-align: center;
+    color: var(--white);
+}
+
+/* ---------- การ์ดฟอร์ม ---------- */
+.auth-page main {
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 440px;
+}
+
+.auth-page main > form {
+    padding: 2.25rem 2rem;
+    background: var(--white);
+    border-top: 5px solid var(--gold-500);
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, .3);
+}
+
+/* ---------- กลุ่มช่องกรอก ---------- */
+.auth-page main > form > section {
+    margin-bottom: 1.15rem;
+}
+
+.auth-page label {
+    display: block;
+    margin-bottom: .4rem;
+    font-size: .95rem;
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--text);
+}
+
+/* ---------- ช่องกรอก ---------- */
+.auth-page input[type="text"],
+.auth-page input[type="email"],
+.auth-page input[type="password"] {
+    width: 100%;
+    min-height: 50px;
+    padding: .75rem 1rem;
+    font-family: inherit;
+    font-size: 1rem;
+    color: var(--text);
+    background: var(--white);
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    transition: border-color var(--transition), box-shadow var(--transition), background var(--transition);
+}
+
+.auth-page input::placeholder {
+    color: #9ca3af;
+}
+
+.auth-page input:hover {
+    border-color: #b8c4d9;
+}
+
+.auth-page input:focus {
+    outline: none;
+    border-color: var(--navy-700);
+    box-shadow: 0 0 0 4px rgba(22, 59, 120, .15);
+}
+
+/* สถานะ error: แสดงเมื่อผู้ใช้กรอกแล้วค่าไม่ถูกต้อง */
+.auth-page input:user-invalid {
+    border-color: var(--danger);
+    background: #fef2f2;
+}
+.auth-page input:user-invalid:focus {
+    box-shadow: 0 0 0 4px rgba(220, 38, 38, .15);
+}
+
+/* สถานะ error จาก Laravel (ใส่ class="is-invalid" ที่ input) */
+.auth-page input.is-invalid {
+    border-color: var(--danger);
+    background: #fef2f2;
+}
+.auth-page .error-message,
+.auth-page .invalid-feedback {
+    display: block;
+    margin-top: .35rem;
+    font-size: .85rem;
+    color: var(--danger);
+}
+
+/* ---------- ปุ่มสมัครสมาชิก ---------- */
+.auth-page main > form > button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 52px;
+    margin-top: 1.5rem;
+    padding: .9rem 1.5rem;
+    font-family: inherit;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--white);
+    background: var(--green-600);
+    border: 0;
+    border-radius: 999px;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(22, 160, 104, .35);
+    transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+}
+.auth-page main > form > button:hover {
+    background: var(--green-700);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(22, 160, 104, .45);
+}
+.auth-page main > form > button:active {
+    transform: translateY(0);
+}
+
+/* ---------- ลิงก์ล่างฟอร์ม (เช่น "มีบัญชีแล้ว? เข้าสู่ระบบ") ---------- */
+.auth-page .auth-link {
+    margin: 1.5rem 0 0;
+    font-size: .92rem;
+    text-align: center;
+    color: var(--text-muted);
+}
+.auth-page .auth-link a {
+    font-weight: 600;
+    color: var(--navy-700);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+.auth-page .auth-link a:hover {
+    color: var(--green-700);
+}
+
+.auth-page .auth-alert {
+    margin-bottom: 1.25rem;
+    padding: .85rem 1rem;
+    color: #991b1b;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    border-left: 4px solid var(--danger);
+    border-radius: var(--radius-sm);
+    font-size: .92rem;
+}
+.auth-page .auth-alert ul { margin: 0; padding-left: 1.1rem; }
+.auth-page .back-home {
+    display: inline-flex;
+    margin-top: 1.5rem;
+    padding: .5rem 1rem;
+    color: rgba(255,255,255,.85);
+    border-radius: 999px;
+    font-size: .92rem;
+}
+.auth-page .back-home:hover { color: #fff; background: rgba(255,255,255,.12); }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 480px) {
+    .auth-page { padding: 1.5rem .85rem; }
+    .auth-page main > form {
+        padding: 1.75rem 1.25rem;
+        border-radius: var(--radius);
+    }
+}

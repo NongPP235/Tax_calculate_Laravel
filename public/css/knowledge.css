@@ -1,0 +1,217 @@
+/* ==========================================================
+   KNOWLEDGE.CSS – หน้าความรู้เกี่ยวกับภาษี
+   ต้องโหลด base.css ก่อนเสมอ
+   ========================================================== */
+
+.tax-knowledge-container {
+    width: 100%;
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2.5rem 1.25rem 4rem;
+}
+
+/* ---------- Override: header/footer ที่อยู่ใน main ---------- */
+.tax-knowledge-container > header.page-header {
+    position: static;
+    display: block;
+    padding: 3rem 2rem;
+    text-align: center;
+    background:
+        radial-gradient(circle at 90% 10%, rgba(232, 176, 48, .22), transparent 45%),
+        linear-gradient(135deg, var(--navy-900), var(--navy-700));
+    border-radius: 20px;
+    box-shadow: var(--shadow-md);
+}
+.page-header h1 {
+    margin-bottom: .75rem;
+    font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+    white-space: normal;
+    color: var(--white);
+}
+.page-header p {
+    max-width: 560px;
+    margin: 0 auto;
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, .85);
+}
+
+.tax-knowledge-container > footer {
+    margin-top: 2.5rem !important;
+    padding: 0;
+    background: transparent;
+}
+
+/* ---------- เส้นคั่น ---------- */
+.tax-knowledge-container > hr {
+    display: none; /* ใช้การ์ดแยกส่วนแทนเส้นคั่น */
+}
+
+/* ---------- การ์ดแต่ละหัวข้อ ---------- */
+.tax-knowledge-container > section {
+    margin-top: 1.75rem;
+    padding: 2.25rem 2.5rem;
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+}
+
+.tax-knowledge-container h2 {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: .75rem;
+    font-size: clamp(1.25rem, 2.5vw, 1.55rem);
+    border-bottom: 2px solid var(--navy-100);
+}
+.tax-knowledge-container h2::before {
+    content: '';
+    flex-shrink: 0;
+    width: 6px;
+    height: 1.3em;
+    background: var(--gold-500);
+    border-radius: 4px;
+}
+
+.tax-knowledge-container h3 {
+    margin: 1.75rem 0 .75rem;
+    font-size: 1.1rem;
+    color: var(--navy-700);
+}
+
+.tax-knowledge-container section p {
+    color: var(--text);
+}
+
+.tax-knowledge-container strong {
+    font-weight: 600;
+    color: var(--navy-800);
+}
+
+/* ---------- รายการ ---------- */
+.tax-knowledge-container ul {
+    margin: 0 0 1rem;
+    padding: 0;
+    list-style: none;
+}
+.tax-knowledge-container li {
+    position: relative;
+    margin-bottom: .6rem;
+    padding: .7rem 1rem .7rem 2.5rem;
+    background: var(--bg);
+    border-radius: var(--radius-sm);
+}
+.tax-knowledge-container li::before {
+    content: '✓';
+    position: absolute;
+    left: 1rem;
+    top: .7rem;
+    font-weight: 700;
+    color: var(--green-600);
+}
+
+/* ---------- กล่องสูตร ---------- */
+.formula-box {
+    margin: 1.5rem 0;
+    padding: 1.25rem 1.5rem;
+    text-align: center;
+    font-size: clamp(.95rem, 2vw, 1.1rem);
+    font-weight: 600;
+    line-height: 1.6;
+    color: var(--white);
+    background: linear-gradient(135deg, var(--navy-800), var(--navy-700));
+    border-left: 5px solid var(--gold-500);
+    border-radius: var(--radius-sm);
+}
+
+/* ---------- ตารางภาษีขั้นบันได ---------- */
+.tax-brackets {
+    overflow-x: auto;
+}
+.tax-brackets table {
+    width: 100% !important;
+    min-width: 520px;
+    margin-top: 1.25rem !important;
+    border: 0 !important;
+    border-collapse: separate !important;
+    border-spacing: 0;
+    overflow: hidden;
+    border-radius: var(--radius-sm);
+    box-shadow: 0 0 0 1px var(--border);
+}
+.tax-brackets th,
+.tax-brackets td {
+    padding: .85rem 1rem !important;
+    border: 0;
+    border-bottom: 1px solid var(--border);
+}
+.tax-brackets thead tr {
+    background: var(--navy-800) !important;
+}
+.tax-brackets th {
+    font-size: .92rem;
+    font-weight: 600;
+    color: var(--white);
+    white-space: nowrap;
+}
+.tax-brackets tbody tr {
+    transition: background var(--transition);
+}
+.tax-brackets tbody tr:nth-child(even) { background: var(--bg); }
+.tax-brackets tbody tr:hover { background: var(--navy-100); }
+.tax-brackets tbody tr:last-child td { border-bottom: 0; }
+
+/* คอลัมน์ตัวเลข ชิดขวาและกว้างเท่ากัน */
+.tax-brackets td:nth-child(n+2),
+.tax-brackets th:nth-child(n+2) {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
+/* คอลัมน์อัตราภาษี: ทำเป็น badge */
+.tax-brackets td:nth-child(2) {
+    font-weight: 600;
+    color: var(--navy-700);
+}
+/* แถวแรก (ยกเว้นภาษี) เน้นสีเขียว */
+.tax-brackets tbody tr:first-child td:nth-child(2) {
+    color: var(--green-600);
+}
+/* แถวสุดท้าย (35%) เน้นสีทอง */
+.tax-brackets tbody tr:last-child td:nth-child(2) {
+    color: var(--gold-600);
+}
+
+/* ---------- ปุ่มท้ายหน้า (มี inline style จึงใช้ !important) ---------- */
+.tax-knowledge-container > footer .btn-primary {
+    background: var(--green-600) !important;
+    padding: .95rem 2.25rem !important;
+    border-radius: 999px !important;
+    font-size: 1.05rem;
+    box-shadow: 0 6px 18px rgba(22, 160, 104, .35);
+}
+.tax-knowledge-container > footer .btn-primary:hover {
+    background: var(--green-700) !important;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 640px) {
+    .tax-knowledge-container { padding: 1.25rem .85rem 3rem; }
+    .tax-knowledge-container > header.page-header {
+        padding: 2rem 1.25rem;
+        border-radius: var(--radius);
+    }
+    .tax-knowledge-container > section {
+        padding: 1.5rem 1.15rem;
+    }
+    .tax-knowledge-container li {
+        padding: .65rem .85rem .65rem 2.25rem;
+        font-size: .95rem;
+    }
+    .tax-knowledge-container li::before { left: .8rem; top: .65rem; }
+    .tax-knowledge-container > footer .btn-primary {
+        display: flex !important;
+        width: 100%;
+    }
+}
